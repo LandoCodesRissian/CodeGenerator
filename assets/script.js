@@ -12,6 +12,18 @@ generatePassword = function(){
     alert('Please enter a number between 8 and 128');
     generatePopup = parseInt(prompt('How many characters would you like your password to be? (min-8 max 128)'));
   }
+
+//Prompt for user selections
+if (generatePopup) {
+  upperCase = confirm ("Would you like Upper Case letters?");
+  console.log(upperCase);
+  lowerCase = confirm ("Would you like lower case letters?");
+  console.log(lowerCase)
+  numbers =confirm ("Would you like numbers?");
+  console.log(numbers);
+  specialCharacters = confirm("Would you like special characters?")
+  console.log(specialCharacters);
+} 
 }
 
 // Assignment Code
