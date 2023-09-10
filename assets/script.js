@@ -1,30 +1,56 @@
 //create variables that hold arrays of different types of characters
-
-
-let specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "{", "}", "[", "]", "=", "?", ">", "<", "/"];
-let lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-let upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+let specialChars = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "{", "}", "[", "]", "=", "?", ">", "<", "/"];
+let lowerCaseChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+let upperCaseChars = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 let numbers = ["1","2","3","4","5","6","7","8","9","0"];
+
 //need a function called generate password
-generatePassword = function(){
-  generatePopup = parseInt(prompt("How many characters would you like your password to be? (min-8 max 128)"))
-  while (!generatePopup || generatePopup < 8 || generatePopup > 128) {
-    alert('Please enter a number between 8 and 128');
-    generatePopup = parseInt(prompt('How many characters would you like your password to be? (min-8 max 128)'));
+function generatePassword() {
+  let passwordLength = parseInt(prompt("How many characters would you like your password to be? (min-8 max-128)"));
+
+  while (!passwordLength || passwordLength < 8 || passwordLength > 128) {
+    alert("Please enter a number between 8 and 128");
+    passwordLength = parseInt(prompt("How many characters would you like your password to be? (min-8 max-128)"));
   }
 
-//Prompt for user selections
-if (generatePopup) {
-  upperCase = confirm ("Would you like Upper Case letters?");
-  console.log(upperCase);
-  lowerCase = confirm ("Would you like lower case letters?");
-  console.log(lowerCase)
-  numbers =confirm ("Would you like numbers?");
-  console.log(numbers);
-  specialCharacters = confirm("Would you like special characters?")
-  console.log(specialCharacters);
-} 
+  let includeUpperCase = confirm("Would you like to include uppercase letters?");
+  let includeLowerCase = confirm("Would you like to include lowercase letters?");
+  let includeNumbers = confirm("Would you like to include numbers?");
+  let includeSpecialChars = confirm("Would you like to include special characters?");
+
+  // if loop to process user choices, Restart if no types selected
+  if (!includeUpperCase && !includeLowerCase && !includeNumbers && !includeSpecialChars) {
+    alert("Please select at least one character type.");
+    return generatePassword(); 
+  }
+
+  let selectedChars = [];
+  
+  if (includeUpperCase) {
+    selectedChars = selectedChars.concat(upperCaseChars);
+  }
+  
+  if (includeLowerCase) {
+    selectedChars = selectedChars.concat(lowerCaseChars);
+  }
+  
+  if (includeNumbers) {
+    selectedChars = selectedChars.concat(numberChars);
+  }
+  
+  if (includeSpecialChars) {
+    selectedChars = selectedChars.concat(specialChars);
+  }
+
+  let password = '';
+  for (let i = 0; i < passwordLength; i++) {
+    let randomIndex = Math.floor(Math.random() * selectedChars.length);
+    password += selectedChars[randomIndex];
+  }
+
+  return password;
 }
+
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -37,6 +63,5 @@ function writePassword() {
   passwordText.value = password;
 
 }
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
