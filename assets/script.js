@@ -35,7 +35,7 @@ function generatePassword() {
   }
   
   if (includeNumbers) {
-    selectedChars = selectedChars.concat(numberChars);
+    selectedChars = selectedChars.concat(numbers);
   }
   
   if (includeSpecialChars) {
