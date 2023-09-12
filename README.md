@@ -12,8 +12,9 @@ Passwords are completely random
 
 
 ## Credits
-Used ChatGPT for reference when I could not get a line of code to work
-Javascript&Jquery textbook
+- Used ChatGPT for reference when I could not get a line of code to work
+- Javascript&Jquery textbook
+- Brother-in-law 
 
 ## License
 MIT License
